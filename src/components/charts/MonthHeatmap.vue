@@ -143,7 +143,8 @@ function cellStyle(cell: Cell): Record<string, string> {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1px;
+  /* 日期与金额是两层信息，之间留一口气，否则两行数字会糊成一团 */
+  gap: 5px;
   aspect-ratio: 1 / 0.94;
   min-height: 44px;
   border-radius: 9px;
@@ -154,11 +155,12 @@ function cellStyle(cell: Cell): Record<string, string> {
 }
 
 /* 首页那张卡窄得多：格子压缩，但金额照样写在日期下面——
-   「这天赢了多少」正是这块卡要回答的问题，只给一个底色等于什么都没说。 */
+   「这天赢了多少」正是这块卡要回答的问题，只给一个底色等于什么都没说。
+   两行之间仍然留 4px：格子再小，日期与金额也不能贴在一起。 */
 .mcal--compact .mcal__cell {
-  min-height: 38px;
+  min-height: 40px;
   border-radius: 7px;
-  gap: 0;
+  gap: 4px;
 }
 
 .mcal--compact .mcal__day {

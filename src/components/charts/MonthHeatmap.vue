@@ -8,7 +8,7 @@
 import { computed } from 'vue'
 import { useI18n } from '@/i18n'
 import type { DayNet } from '@/domain/streak'
-import { compactSignedYuan } from '@/domain/uiText'
+import { compactSignedYuan, signedYuan } from '@/domain/uiText'
 
 const props = withDefaults(
   defineProps<{
@@ -97,7 +97,7 @@ function cellStyle(cell: Cell): Record<string, string> {
         ]"
         :style="cellStyle(cell)"
         :disabled="!cell.data"
-        :title="cell.data ? `${cell.dayKey} ${compactSignedYuan(cell.data.netMinor)}` : ''"
+        :title="cell.data ? `${cell.dayKey} · ${signedYuan(cell.data.netMinor)} · ${t('home_slot_count_format', [cell.data.sessionCount])}` : undefined"
         @click="cell.dayKey && emit('select', cell.dayKey)"
       >
         <span class="mcal__day">{{ cell.dayOfMonth || '' }}</span>
@@ -153,9 +153,21 @@ function cellStyle(cell: Cell): Record<string, string> {
   transition: all 0.12s ease;
 }
 
+/* 首页那张卡窄得多：格子压缩，但金额照样写在日期下面——
+   「这天赢了多少」正是这块卡要回答的问题，只给一个底色等于什么都没说。 */
 .mcal--compact .mcal__cell {
-  min-height: 34px;
+  min-height: 38px;
   border-radius: 7px;
+  gap: 0;
+}
+
+.mcal--compact .mcal__day {
+  font-size: 9.5px;
+}
+
+.mcal--compact .mcal__amount {
+  font-size: 8.5px;
+  letter-spacing: -0.04em;
 }
 
 .mcal__cell--blank {
@@ -204,10 +216,7 @@ function cellStyle(cell: Cell): Record<string, string> {
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.1;
-}
-
-.mcal--compact .mcal__amount {
-  display: none;
+  white-space: nowrap;
 }
 
 .mcal__empty {

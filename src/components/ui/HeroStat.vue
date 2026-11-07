@@ -131,7 +131,9 @@ const text = computed(() => (props.minor === null ? '—' : signedYuan(props.min
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 10px;
+  /* 卡片被同一行的指标行撑高时，胶囊沉到底部，而不是悬在半空 */
+  margin-top: auto;
+  padding-top: 10px;
 }
 
 .hero__meta :deep(.hero-chip) {

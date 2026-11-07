@@ -67,6 +67,17 @@ describe('pages render with real data', () => {
     expect(text).toContain('分时段战绩')
     expect(wrapper.findAll('svg').length).toBeGreaterThan(2)
 
+    // 指标行里单场极值必须成对出现：赢最多与输最多各一格
+    const tiles = wrapper.findAll('.tile')
+    expect(tiles.some((it) => it.text().includes('单场赢最多'))).toBe(true)
+    const worstTile = tiles.find((it) => it.text().includes('单场输最多'))
+    expect(worstTile, '首页应有一个「单场输最多」指标格').toBeTruthy()
+    expect(worstTile!.text()).toMatch(/-¥/)
+
+    // 胜负分布不该再抢用「分时段战绩」的标题
+    expect(text).toContain('胜负分布')
+    expect(text.split('分时段战绩').length - 1).toBe(1)
+
     // 分时段战绩：三个时段各一行，净额与场均两列都在。
     // 有场次的时段，场均必须是一个带符号的金额；没场次的时段两列都是占位符。
     const slotHead = wrapper.find('.slots__head')

@@ -205,6 +205,13 @@ function openDay(dayKey: string): void {
             icon="arrow-up"
             tone="win"
           />
+          <StatTile
+            :label="t('stat_worst_loss')"
+            :value="extremes.worstLoss ? signedYuan(extremes.worstLoss.netMinor) : '—'"
+            :hint="extremes.worstLoss ? monthDayOfKey(dayKeyOf(extremes.worstLoss.playedAt)) : t('common_unavailable')"
+            icon="arrow-down"
+            tone="loss"
+          />
         </div>
       </section>
 
@@ -218,7 +225,7 @@ function openDay(dayKey: string): void {
           <p class="panel__note">{{ t('home_trend_note') }}</p>
         </Panel>
 
-        <Panel :title="t('home_slot_title')">
+        <Panel :title="t('home_dist_title')">
           <div class="dist">
             <DonutChart
               :win="stats.winCount"
@@ -248,16 +255,7 @@ function openDay(dayKey: string): void {
               </li>
             </ul>
           </div>
-          <div class="extremes">
-            <div class="extremes__item">
-              <span class="extremes__label">{{ t('stat_worst_loss') }}</span>
-              <AmountText :minor="extremes.worstLoss ? extremes.worstLoss.netMinor : null" size="md" />
-            </div>
-            <div class="extremes__item">
-              <span class="extremes__label">{{ t('home_streak_current_win') }}</span>
-              <span class="extremes__value num">{{ streaks.currentWinStreak }}</span>
-            </div>
-          </div>
+          <p class="panel__note">{{ t('home_dist_note') }}</p>
         </Panel>
       </section>
 
@@ -441,11 +439,21 @@ function openDay(dayKey: string): void {
   grid-column: span 4;
 }
 
+/* 五个读数排成 3 + 2：上排三格、下排两格更宽。
+   排成一行五格的话，每格只剩 ~145px，大金额会挤在一起。 */
 .tiles {
   grid-column: span 7;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 12px;
+}
+
+.tiles > :nth-child(-n + 3) {
+  grid-column: span 2;
+}
+
+.tiles > :nth-child(n + 4) {
+  grid-column: span 3;
 }
 
 .dist {
@@ -488,30 +496,6 @@ function openDay(dayKey: string): void {
 .legend__amount {
   min-width: 74px;
   text-align: right;
-}
-
-.extremes {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  border-top: 1px solid var(--border);
-  padding-top: 12px;
-}
-
-.extremes__item {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.extremes__label {
-  font-size: 11px;
-  color: var(--text-3);
-}
-
-.extremes__value {
-  font-size: 18px;
-  font-weight: 700;
 }
 
 .bar-foot {
@@ -697,8 +681,17 @@ function openDay(dayKey: string): void {
     grid-column: span 12;
   }
 
+  /* 窄屏不再 3 + 2，改成两列等宽，最后一个占满整行 */
   .tiles {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tiles > :nth-child(n) {
+    grid-column: span 1;
+  }
+
+  .tiles > :last-child:nth-child(odd) {
+    grid-column: span 2;
   }
 }
 </style>

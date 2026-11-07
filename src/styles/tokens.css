@@ -1,0 +1,155 @@
+/**
+ * 设计令牌。
+ *
+ * 取色沿用 Android 版的语义色：米白画布、墨绿主操作、砖红「赢」、中绿「输」、
+ * 米黄「持平」、鎏金荣誉标记。深色主题按同一套语义另配一组，不是简单反色。
+ */
+
+:root {
+  color-scheme: light;
+
+  --canvas: #f7f3e9;
+  --canvas-dim: #ede6d5;
+  --surface: #ffffff;
+  --surface-alt: #fcf9f1;
+  --surface-sunken: #f4efe3;
+  --border: #ede4d2;
+  --border-strong: #d9cfb8;
+  --outline: #c9bfa9;
+  --chip: #f1eee6;
+
+  --text: #1b211d;
+  --text-2: #6f766e;
+  --text-3: #a6aca4;
+  --text-inverse: #ffffff;
+
+  --brand: #1f5e45;
+  --brand-hover: #174a36;
+  --brand-ink: #14352a;
+  --brand-container: #dcebe2;
+  --on-brand-container: #0c2b1e;
+
+  --win: #b93a2b;
+  --win-soft: #b93a2b14;
+  --win-container: #f6dcd6;
+  --on-win-container: #4a120a;
+
+  --loss: #2f7a55;
+  --loss-soft: #2f7a5514;
+  --loss-container: #d9ebe0;
+  --on-loss-container: #0e3323;
+
+  --draw: #a9801f;
+  --draw-soft: #a9801f14;
+  --draw-container: #f0e4c0;
+  --on-draw-container: #3e2f06;
+
+  --gold: #d9b85c;
+  --gold-container: #f5e8c6;
+  --on-gold-container: #4a3708;
+
+  --hero: #14352a;
+  --hero-top: #1c4636;
+  --hero-bottom: #0c2419;
+  --on-hero: #ffffff;
+  --on-hero-muted: #9fd3b8;
+  --hero-chip: #1f5e45;
+  --on-hero-chip: #d6f0e2;
+  --hero-win: #f0927f;
+  --hero-loss: #77c9a1;
+  --hero-draw: #e0c071;
+
+  --danger: #b93a2b;
+  --danger-container: #f6dcd6;
+
+  --page-bg: radial-gradient(1200px 520px at 84% 0%, rgba(255, 199, 107, 0.28), transparent 62%),
+    linear-gradient(180deg, #fbe9c9 0%, #f3f0e7 34%, #f7f3e9 74%, #f7f3e9 100%);
+  --sidebar-bg: rgba(255, 255, 255, 0.62);
+  --card-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 253, 246, 0.9));
+  --card-border: rgba(255, 255, 255, 0.9);
+  --shadow-sm: 0 1px 2px rgba(138, 115, 85, 0.06), 0 1px 3px rgba(138, 115, 85, 0.05);
+  --shadow-md: 0 2px 6px rgba(138, 115, 85, 0.07), 0 8px 24px rgba(138, 115, 85, 0.08);
+  --shadow-lg: 0 12px 40px rgba(138, 115, 85, 0.16);
+  --ring: rgba(31, 94, 69, 0.28);
+
+  --radius-xs: 8px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  --sidebar-w: 236px;
+  --topbar-h: 64px;
+  --gutter: 28px;
+  --maxw: 1400px;
+
+  --font-sans: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-num: ui-rounded, 'SF Pro Rounded', 'DIN Alternate', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --canvas: #121614;
+  --canvas-dim: #0c100e;
+  --surface: #1b211d;
+  --surface-alt: #232b26;
+  --surface-sunken: #171d1a;
+  --border: #2c3833;
+  --border-strong: #3c4a43;
+  --outline: #3c4a43;
+  --chip: #252e29;
+
+  --text: #e8ece8;
+  --text-2: #9aa39c;
+  --text-3: #7a837c;
+  --text-inverse: #10130f;
+
+  --brand: #7ccfa6;
+  --brand-hover: #93dcb8;
+  --brand-ink: #1b4131;
+  --brand-container: #1f4433;
+  --on-brand-container: #d6f0e2;
+
+  --win: #f0927f;
+  --win-soft: #f0927f1f;
+  --win-container: #4a1c14;
+  --on-win-container: #fbd9d1;
+
+  --loss: #77c9a1;
+  --loss-soft: #77c9a11f;
+  --loss-container: #17392a;
+  --on-loss-container: #cfefdd;
+
+  --draw: #e0c071;
+  --draw-soft: #e0c0711f;
+  --draw-container: #3c3216;
+  --on-draw-container: #f3e4b8;
+
+  --gold: #d9b85c;
+  --gold-container: #3c3216;
+  --on-gold-container: #f3e4b8;
+
+  --hero: #22513c;
+  --hero-top: #2c6349;
+  --hero-bottom: #173a2b;
+  --on-hero: #eaf6ef;
+  --on-hero-muted: #9fd3b8;
+  --hero-chip: #27543f;
+  --on-hero-chip: #d6f0e2;
+
+  --danger: #f0927f;
+  --danger-container: #4a1c14;
+
+  --page-bg: radial-gradient(1100px 480px at 84% 0%, rgba(62, 143, 104, 0.22), transparent 62%),
+    linear-gradient(180deg, #1d2e25 0%, #161d19 34%, #121614 74%, #121614 100%);
+  --sidebar-bg: rgba(27, 33, 29, 0.66);
+  --card-bg: linear-gradient(180deg, rgba(33, 42, 36, 0.96), rgba(27, 33, 29, 0.92));
+  --card-border: rgba(255, 255, 255, 0.06);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.35), 0 12px 32px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --ring: rgba(124, 207, 166, 0.32);
+}

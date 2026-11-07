@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.pnpm-store/
+*.local
+.vite/
+.DS_Store
+*.tsbuildinfo
+
+.shots/
+.chrome-profile/

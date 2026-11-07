@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="t" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#1c4636"/>
+      <stop offset="1" stop-color="#0c2419"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="url(#t)"/>
+  <rect x="11" y="11" width="42" height="42" rx="9" fill="none" stroke="#9fd3b8" stroke-opacity="0.45" stroke-width="2"/>
+  <text x="32" y="41.5" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="700" fill="#eaf6ef" text-anchor="middle">麻</text>
+</svg>

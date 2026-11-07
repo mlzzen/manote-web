@@ -66,6 +66,23 @@ describe('pages render with real data', () => {
     expect(text).toContain('累计净额曲线')
     expect(text).toContain('分时段战绩')
     expect(wrapper.findAll('svg').length).toBeGreaterThan(2)
+
+    // 分时段战绩：三个时段各一行，净额与场均两列都在。
+    // 有场次的时段，场均必须是一个带符号的金额；没场次的时段两列都是占位符。
+    const slotHead = wrapper.find('.slots__head')
+    expect(slotHead.text()).toContain('净额')
+    expect(slotHead.text()).toContain('场均')
+
+    const slotRows = wrapper.findAll('.slots__row')
+    expect(slotRows).toHaveLength(3)
+    const played = slotRows.filter((row) => row.find('.slots__net').text() !== '—')
+    expect(played.length).toBeGreaterThan(0)
+    for (const row of played) {
+      expect(row.find('.slots__avg').text()).toMatch(/^[+-]¥/)
+    }
+    for (const row of slotRows.filter((it) => it.find('.slots__net').text() === '—')) {
+      expect(row.find('.slots__avg').text()).toBe('—')
+    }
     wrapper.unmount()
   })
 

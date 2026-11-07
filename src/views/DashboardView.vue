@@ -92,6 +92,8 @@ const slotItems = computed(() => {
       key: slot,
       label: slotLabel(slot),
       netMinor: netMinorOf(stat),
+      // 场均 = 该时段净额 ÷ 该时段场数（四舍五入到分）；没有场次时为 0，由界面显示占位符
+      averageMinor: averageNetMinor(stat),
       sessionCount: stat.sessionCount,
       winRate: winRatePercent(stat),
     }
@@ -276,7 +278,7 @@ function openDay(dayKey: string): void {
 
         <Panel :title="t('home_slot_title')">
           <SlotBars :items="slotItems" />
-          <p class="panel__note">{{ t('home_slot_count') }} · {{ t('home_stat_win_rate') }}</p>
+          <p class="panel__note">{{ t('home_slot_note') }}</p>
         </Panel>
 
         <Panel :title="t('home_streak_title')">
